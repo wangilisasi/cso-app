@@ -6,6 +6,7 @@ const User=require("../model/user")
 router.post("/", upload.single("image"), async(req,res)=>{
     try{
         const result=await cloudinary.uploader.upload(req.file.path);
+        console.log(req.file.path)
         //res.json(result);
 
         //Create new user
