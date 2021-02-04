@@ -24,9 +24,9 @@ router.post("/", upload.single("image"), async(req,res)=>{
 
 router.get("/",async(req,res)=>{
     try{
-        // let user=await User.find();
-        // res.json(user)
-        res.send("the quick brown fox jumps over the lazy dog")
+        let user=await User.find();
+        res.json(user)
+        
     }catch (err){
         console.log(err);
     }
