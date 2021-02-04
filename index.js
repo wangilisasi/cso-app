@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI,{
 app.use(express.json());
 
 //Route
-app.use("/user",routes)
+app.use("/csos",routes)
 
 
 
