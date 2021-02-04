@@ -22,14 +22,18 @@ router.post("/", upload.single("image"), async(req,res)=>{
     }
 })
 
-router.get("/",async(req,res)=>{
-    try{
-        // let user=await User.find();
-        // res.json(user)
-        res.send("the quick brown fox")
-    }catch (err){
-        console.log(err);
-    }
+// router.get("/",async(req,res)=>{
+//     try{
+//         // let user=await User.find();
+//         // res.json(user)
+//         res.send("the quick brown fox")
+//     }catch (err){
+//         console.log(err);
+//     }
+// })
+
+router.get("/", function(req,res){
+    res.send("The quick brown fox");
 })
 
 router.delete("/:id", async(req,res)=>{
