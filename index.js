@@ -18,7 +18,10 @@ mongoose.connect(process.env.MONGO_URI,{
 app.use(express.json());
 
 //Route
-app.use("/user",require("./routes/user"))
+//app.use("/user",require("./routes/user"))
+app.get("/", function(req,res){
+    res.send("The quick brown fox");
+})
 
 
 
