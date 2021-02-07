@@ -3,6 +3,9 @@ const userSchema=new mongoose.Schema({
     name:{
         type:String
     },
+    description:{
+        type:String
+    },
     avatar:{
         type:String
     },
