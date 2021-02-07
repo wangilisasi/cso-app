@@ -1,7 +1,6 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const routes=require("./routes/user")
-const routes1=require("./routes/admin")
 const dotenv=require("dotenv");
 dotenv.config();
 
