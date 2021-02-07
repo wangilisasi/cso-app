@@ -1,10 +1,13 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const routes=require("./routes/user")
+const routes1=require("./routes/admin")
 const dotenv=require("dotenv");
 dotenv.config();
 
 const app=express();
+
+app.use(express.static("public"));
 
 //Connect database
 mongoose.connect(process.env.MONGO_URI,{
@@ -21,6 +24,9 @@ app.use(express.json());
 //Route
 app.use("/csos",routes)
 
+app.get("/admin", function(req,res){
+    res.sendFile(__dirname+"/index.html")
+ })
 
 
 
