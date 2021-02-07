@@ -12,6 +12,7 @@ router.post("/", upload.single("image"), async(req,res)=>{
         //Create new user
         let user=new User({
             name:req.body.name,
+            description:req.body.description,
             avatar:result.secure_url,
             cloudinary_id:result.public_id
         });
