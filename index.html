@@ -50,14 +50,14 @@
   <body class="text-center">
     
 <main class="form-signin">
-  <form action="https://cso-app.herokuapp.com/csos" onsubmit="this.submit(); this.reset(); return false;" method=POST enctype="multipart/form-data">
+  <form action="https://cso-app.herokuapp.com/csos" onsubmit="this.submit(); this.reset(); return false;" method=POST id="addform" enctype="multipart/form-data">
     <img class="mb-4" src="images/eannaso-logo1.gif" alt="" width="131" height="57">
     <h1 class="h3 mb-3 fw-normal">Enter Your CSO Details</h1>
     <input type="text" class="form-control top" name="name" placeholder="CSO Name" required autofocus>
     <textarea rows="2" class="form-control middle" cols="50" name="vision" placeholder="Vision" ></textarea>
     <textarea rows="2" class="form-control middle" cols="50" name="mission" placeholder="Mission" ></textarea>
     
-    <textarea rows="4" class="form-control middle" cols="50" name="description" placeholder="Details of what your CSO is doing" ></textarea>
+    <textarea rows="4" class="form-control middle" cols="50" name="description" form="addform" placeholder="Details of what your CSO is doing" ></textarea>
     
     <input type="email"  class="form-control bottom" name="email" placeholder="email" >
     <input type="tel"  class="form-control bottom" name="phone" placeholder="Phone number" >
