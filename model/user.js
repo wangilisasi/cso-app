@@ -6,6 +6,12 @@ const userSchema=new mongoose.Schema({
     description:{
         type:String
     },
+    latitude:{
+        type:String
+    },
+    longitude:{
+        type:String
+    },
     avatar:{
         type:String
     },

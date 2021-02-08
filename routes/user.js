@@ -17,6 +17,8 @@ router.post("/", upload.single("image"), async(req,res)=>{
         let user=new User({
             name:req.body.name,
             description:req.body.description,
+            latitude:req.body.latitude,
+            longitude:req.body.longitude,
             avatar:result.secure_url,
             cloudinary_id:result.public_id
         });
