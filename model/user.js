@@ -12,6 +12,9 @@ const userSchema=new mongoose.Schema({
     longitude:{
         type:String
     },
+    region:{
+        type:String
+    },
     avatar:{
         type:String
     },

@@ -10,6 +10,7 @@ router.post("/", upload.single("image"), async(req,res)=>{
         console.log(req.body.description)
         console.log(req.body.latitude)
         console.log(req.body.longitude)
+        console.log(req.body.region)
 
         const result=await cloudinary.uploader.upload(req.file.path);
 
@@ -19,6 +20,7 @@ router.post("/", upload.single("image"), async(req,res)=>{
             description:req.body.description,
             latitude:req.body.latitude,
             longitude:req.body.longitude,
+            region:req.body.region,
             avatar:result.secure_url,
             cloudinary_id:result.public_id
         });
