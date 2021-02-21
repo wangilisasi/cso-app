@@ -1,7 +1,7 @@
 const router=require("express").Router();
 const cloudinary=require("../utils/cloudinary");
 const upload=require("../utils/multer");
-const User=require("../model/user")
+const User=require("../model/cso")
 
 router.post("/", upload.single("image"), async(req,res)=>{
     try{
