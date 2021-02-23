@@ -1,7 +1,8 @@
 const dotenv=require("dotenv").config();
 const express=require("express");
 const mongoose=require("mongoose");
-const routes=require("./routes/cso")
+const csoRoute=require("./routes/cso")
+const authRoute=require("./routes/auth")
 
 
 
@@ -22,7 +23,8 @@ mongoose.connect(process.env.MONGO_URI,{
 app.use(express.json());
 
 //Route
-app.use("/csos",routes)
+app.use("/csos",csoRoute)
+app.use("/api/auth",authRoute)
 
 app.get("/admin", function(req,res){
     res.sendFile(__dirname+"/index.html")
