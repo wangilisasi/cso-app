@@ -1,7 +1,7 @@
 const router=require("express").Router();
 const cloudinary=require("../utils/cloudinary");
 const upload=require("../utils/multer");
-const User=require("../model/cso")
+const Cso=require("../model/cso")
 
 router.post("/", upload.single("image"), async(req,res)=>{
     try{
@@ -14,8 +14,8 @@ router.post("/", upload.single("image"), async(req,res)=>{
 
         const result=await cloudinary.uploader.upload(req.file.path);
 
-        //Create new user
-        let user=new User({
+        //Create new cso
+        let cso=new Cso({
             name:req.body.name,
             description:req.body.description,
             latitude:req.body.latitude,
@@ -24,9 +24,9 @@ router.post("/", upload.single("image"), async(req,res)=>{
             avatar:result.secure_url,
             cloudinary_id:result.public_id
         });
-        //Save user
-        await user.save();
-        res.json(user);
+        //Save cso
+        await cso.save();
+        res.json(cso);
     }catch (err){
         console.log(err)
     }
@@ -34,8 +34,8 @@ router.post("/", upload.single("image"), async(req,res)=>{
 
 router.get("/",async(req,res)=>{
     try{
-        let user=await User.find();
-        res.json(user)
+        let cso=await Cso.find();
+        res.json(cso)
         
     }catch (err){
         console.log(err);
@@ -45,13 +45,13 @@ router.get("/",async(req,res)=>{
 
 router.delete("/:id", async(req,res)=>{
     try{
-        //Find user by ID
-        let user=await User.findById(req.params.id);
+        //Find cso by ID
+        let cso=await User.findById(req.params.id);
         //Delete image from cloudinary
-        await cloudinary.uploader.destroy(user.cloudinary_id); //destroy takes the cloudinary public ID
+        await cloudinary.uploader.destroy(cso.cloudinary_id); //destroy takes the cloudinary public ID
         //Delete user from DB
-        await user.remove()
-        res.json(user);
+        await cso.remove()
+        res.json(cso);
     }catch (err){
         console.log(err);
     }
@@ -59,20 +59,20 @@ router.delete("/:id", async(req,res)=>{
 
 router.put("/:id",upload.single("image"),async (req,res)=>{
     try{
-        let user=await User.findById(req.params.id);
+        let cso=await Cso.findById(req.params.id);
         //first delete existing image
-        await cloudinary.uploader.destroy(user.cloudinary_id);
+        await cloudinary.uploader.destroy(cso.cloudinary_id);
         //then upload the new file
         const result=await cloudinary.uploader.upload(req.file.path);
         //then create a request body
         const data={
-            name:req.body.name||user.name,  //if you provide a new name. otherwise it will use the name in the database
+            name:req.body.name||cso.name,  //if you provide a new name. otherwise it will use the name in the database
             avatar:result.secure_url||user.avatar,  //use new image if updated otherwise use the old one
-            cloudinary_id:result.public_id||user.cloudinary_id,
+            cloudinary_id:result.public_id||cso.cloudinary_id,
         };
 
-        user=await User.findByIdAndUpdate(req.params.id,data,{new:true});
-        res.json(user);
+        cso=await Cso.findByIdAndUpdate(req.params.id,data,{new:true});
+        res.json(cso);
     }catch(err){
         console.log(err)
     }
