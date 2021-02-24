@@ -2,6 +2,7 @@
 const router=require("express").Router();
 const bcrypt=require("bcrypt")
 const User=require("../model/user");
+const rounds=10;
 
 router.get("/login",(req,res)=>{
 
