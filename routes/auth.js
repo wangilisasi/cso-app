@@ -8,7 +8,9 @@ router.get("/login",(req,res)=>{
 
 });
 
-router.post("/register",(req,res)=>{
+router.post("/",(req,res)=>{
+    console.log(req.body.email)
+    console.log(req.body.password)
     bcrypt.hash(req.body.password,rounds,(error,hash)=>{
         if(error) res.status(500).json(error)
         else{
