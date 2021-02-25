@@ -3,8 +3,7 @@ const express=require("express");
 const mongoose=require("mongoose");
 const csoRoute=require("./routes/cso");
 const authRoute=require("./routes/auth");
-
-
+const bodyParser=require("body-parser")
 
 const app=express();
 
@@ -21,10 +20,14 @@ mongoose.connect(process.env.MONGO_URI,{
 
 //Middleware to parse request body
 app.use(express.json());
+app.use(express.urlencoded());
+//app.use(bodyParser.urlencoded({extended:true}))
 
 //Route
-app.use("/api/auth",authRoute)
 app.use("/csos",csoRoute)
+app.use("/api/auth",authRoute)
+
+
 
 
 app.get("/admin", function(req,res){
