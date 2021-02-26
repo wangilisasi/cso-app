@@ -19,7 +19,7 @@ router.post("/login",(req,res)=>{
                     if(error) res.status(500).json(error)
                     else if(match){ 
                         const token=generateToken(user)
-                        res.status(200).json({...user,token:token})
+                        res.status(200).json(user.token=token)
                     }
                     else res.status(403).json({error:"passwords do not match"})
                 })
