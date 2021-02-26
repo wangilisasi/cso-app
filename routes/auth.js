@@ -17,7 +17,10 @@ router.post("/login",(req,res)=>{
             else{
                 bcrypt.compare(req.body.password,user.password,(error,match)=>{
                     if(error) res.status(500).json(error)
-                    else if(match) res.status(200).json({user,token:generateToken(user)})
+                    else if(match){ 
+                        const token=generateToken(user)
+                        res.status(200).json({...user,token:token})
+                    }
                     else res.status(403).json({error:"passwords do not match"})
                 })
             }
