@@ -3,7 +3,8 @@ const express=require("express");
 const mongoose=require("mongoose");
 const csoRoute=require("./routes/cso");
 const authRoute=require("./routes/auth");
-const bodyParser=require("body-parser")
+//const bodyParser=require("body-parser")
+const userRoute=require("./routes/user")
 
 const app=express();
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded());
 //Route
 app.use("/csos",csoRoute)
 app.use("/api/auth",authRoute)
+app.use("/user",userRoute)
 
 
 
@@ -34,6 +36,7 @@ app.get("/admin", function(req,res){
     res.sendFile(__dirname+"/index.html")
  })
 
+ 
 
 
 
