@@ -46,7 +46,7 @@ router.get("/",async(req,res)=>{
 router.delete("/:id", async(req,res)=>{
     try{
         //Find cso by ID
-        let cso=await User.findById(req.params.id);
+        let cso=await Cso.findById(req.params.id);
         //Delete image from cloudinary
         await cloudinary.uploader.destroy(cso.cloudinary_id); //destroy takes the cloudinary public ID
         //Delete user from DB
