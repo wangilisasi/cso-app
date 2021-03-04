@@ -15,7 +15,7 @@ router.post("/login",(req,res)=>{
             if(!user) res.status(404).json({error:"no user with that email found"})
             else{
                 bcrypt.compare(req.body.password,user.password,(error,match)=>{
-                    if(error) res.status(500).json(error)
+                    if(error) res.status(401).json(error)
                     else if(match){ 
                         const token={token_id:generateToken(user)}
                         console.log({user})   
