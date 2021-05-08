@@ -30,8 +30,6 @@ app.use("/api/auth",authRoute)
 app.use("/user",userRoute)
 
 
-
-
 app.get("/admin", function(req,res){
     res.sendFile(__dirname+"/index.html")
  })
