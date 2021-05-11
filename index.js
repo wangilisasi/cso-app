@@ -26,7 +26,7 @@ app.use(express.urlencoded());
 
 //Route
 app.use("/csos",csoRoute)
-app.use("/api/auth",authRoute)
+app.use("/auth",authRoute)
 app.use("/user",userRoute)
 
 
