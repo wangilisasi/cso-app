@@ -15,9 +15,6 @@ const csoSchema=new mongoose.Schema({
     region:{
         type:String
     },
-    phone:{
-        type:String
-    },
     avatar:{
         type:String
     },

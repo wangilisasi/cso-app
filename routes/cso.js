@@ -20,7 +20,6 @@ router.post("/", upload.single("image"), async(req,res)=>{
             description:req.body.description,
             latitude:req.body.latitude,
             longitude:req.body.longitude,
-            phone:req.body.phone,
             region:req.body.region,
             avatar:result.secure_url,
             cloudinary_id:result.public_id
