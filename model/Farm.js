@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-const csoSchema=new mongoose.Schema({
+const farmSchema=new mongoose.Schema({
     name:{
         type:String
     },
@@ -20,8 +20,12 @@ const csoSchema=new mongoose.Schema({
     },
     cloudinary_id:{
         type:String
-    }
+    },
+    // owner:{
+    //     type:Schema.Types.ObjectId,
+    //     ref:"User"
+    // }
 
 })
 
-module.exports=mongoose.model("CSO",csoSchema);
+module.exports=mongoose.model("Farm",farmSchema);

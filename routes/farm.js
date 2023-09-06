@@ -1,7 +1,7 @@
 const router=require("express").Router();
 const cloudinary=require("../utils/cloudinary");
 const upload=require("../utils/multer");
-const Cso=require("../model/cso")
+const Farm=require("../model/Farm")
 
 router.post("/", upload.single("image"), async(req,res)=>{
     try{
@@ -14,8 +14,8 @@ router.post("/", upload.single("image"), async(req,res)=>{
 
         const result=await cloudinary.uploader.upload(req.file.path);
 
-        //Create new cso
-        let cso=new Cso({
+        //Create new farm
+        let farm=new Farm({
             name:req.body.name,
             description:req.body.description,
             latitude:req.body.latitude,
@@ -25,8 +25,8 @@ router.post("/", upload.single("image"), async(req,res)=>{
             cloudinary_id:result.public_id
         });
         //Save cso
-        await cso.save();
-        res.json(cso);
+        await farm.save();
+        res.json(farm);
     }catch (err){
         console.log(err)
     }
@@ -34,8 +34,8 @@ router.post("/", upload.single("image"), async(req,res)=>{
 
 router.get("/",async(req,res)=>{
     try{
-        let cso=await Cso.find();
-        res.json(cso)
+        let farm=await Farm.find();
+        res.json(farm)
         
     }catch (err){
         console.log(err);
@@ -46,12 +46,12 @@ router.get("/",async(req,res)=>{
 router.delete("/:id", async(req,res)=>{
     try{
         //Find cso by ID
-        let cso=await Cso.findById(req.params.id);
+        let farm=await Farm.findById(req.params.id);
         //Delete image from cloudinary
         await cloudinary.uploader.destroy(cso.cloudinary_id); //destroy takes the cloudinary public ID
         //Delete user from DB
-        await cso.remove()
-        res.json(cso);
+        await farm.remove()
+        res.json(farm);
     }catch (err){
         console.log(err);
     }
@@ -59,20 +59,20 @@ router.delete("/:id", async(req,res)=>{
 
 router.put("/:id",upload.single("image"),async (req,res)=>{
     try{
-        let cso=await Cso.findById(req.params.id);
+        let farm=await Farm.findById(req.params.id);
         //first delete existing image
         await cloudinary.uploader.destroy(cso.cloudinary_id);
         //then upload the new file
         const result=await cloudinary.uploader.upload(req.file.path);
         //then create a request body
         const data={
-            name:req.body.name||cso.name,  //if you provide a new name. otherwise it will use the name in the database
+            name:req.body.name||farm.name,  //if you provide a new name. otherwise it will use the name in the database
             avatar:result.secure_url||user.avatar,  //use new image if updated otherwise use the old one
-            cloudinary_id:result.public_id||cso.cloudinary_id,
+            cloudinary_id:result.public_id||farm.cloudinary_id,
         };
 
-        cso=await Cso.findByIdAndUpdate(req.params.id,data,{new:true});
-        res.json(cso);
+        cso=await Farm.findByIdAndUpdate(req.params.id,data,{new:true});
+        res.json(farm);
     }catch(err){
         console.log(err)
     }

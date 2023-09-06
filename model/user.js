@@ -1,13 +1,18 @@
 const mongoose=require("mongoose");
 const userSchema=new mongoose.Schema({
         email:{
-            type:String
-            // required:true
+            type:String,
+            //unique: true, // Ensures that each email is unique
+            //required:true,
         },
         password:{
             type:String
             // required:true
-        }
+        },
+        // farms:[{
+        //     type:Schema.Types.ObjectId,
+        //     ref:"Farm"
+        // }]
         // name:{
         //     type:String
         // },
